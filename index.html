@@ -1,26 +1,87 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#691b31"><title>Inscription RJECI</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=4">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf4">
+  <meta name="description" content="Inscription à la formation RJECI : prendre la parole avec assurance.">
+  <title>Inscription formation | RJECI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <main class="app-shell">
-    <header class="topbar"><img src="image.png" alt="Logo RJECI"><span>RJECI</span><button class="poster-button" type="button" aria-label="Voir l'affiche">i</button></header>
-    <section class="hero"><div class="hero-orbit one"></div><div class="hero-orbit two"></div><p class="kicker">FORMATION · RJECI</p><h1>Votre voix<br><em>compte.</em></h1><p class="hero-text">Inscrivez-vous à la formation sur la prise de parole en public.</p><button class="show-poster" type="button"><span>Voir l’affiche de la formation</span><b>↗</b></button></section>
-    <section class="form-card">
-      <div class="form-intro"><div><p class="step-label" id="step-label">ÉTAPE 1 SUR 3</p><h2 id="step-title">Faisons connaissance</h2></div><div class="step-number" id="step-number">01</div></div>
-      <div class="progress" aria-label="Progression"><i class="active"></i><i></i><i></i></div>
-      <form id="registration-form" novalidate>
-        <div class="form-step active" data-step="1"><p class="step-help">Comment pouvons-nous vous appeler ?</p><label for="nom">Nom et prénoms</label><input id="nom" name="nom" autocomplete="name" placeholder="Ex. Aminata Kouassi" required maxlength="120"><button class="next" type="button">Continuer <span>→</span></button></div>
-        <div class="form-step" data-step="2" hidden><p class="step-help">Pour vous envoyer les informations de connexion.</p><label for="telephone">Téléphone / WhatsApp</label><input id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07 00 00 00 00" required maxlength="30"><label for="email">Adresse e-mail <small>facultatif</small></label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nom@email.com" maxlength="160"><div class="actions"><button class="back" type="button">Retour</button><button class="next" type="button">Continuer <span>→</span></button></div></div>
-        <div class="form-step" data-step="3" hidden><p class="step-help">Votre participation est presque confirmée.</p><label for="ville">Ville de résidence</label><select id="ville" name="ville" required><option value="">Sélectionnez votre ville</option><option>Abidjan</option><option>Bouaké</option><option>Yamoussoukro</option><option>San-Pédro</option><option>Korhogo</option><option>Daloa</option><option>Man</option><option>Gagnoa</option><option>Autre</option></select><label for="participation">Votre participation</label><select id="participation" name="participation" required><option value="">Choisissez une réponse</option><option value="Oui">Oui, je confirme ma participation</option><option value="Non">Je souhaite être informé(e)</option></select><label class="consent"><input type="checkbox" id="consent" required><span>J’accepte l’utilisation de mes informations par le RJECI pour cette inscription.</span></label><div class="actions"><button class="back" type="button">Retour</button><button class="next" id="submit-button" type="submit">Confirmer <span>✓</span></button></div></div>
-      </form><div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+    <header class="site-header">
+      <img class="brand-logo" src="image.png" alt="Logo officiel du Rassemblement des Jeunes Élites de Côte d’Ivoire">
+      <div class="brand-copy"><strong>RJECI</strong><span>Rassemblement des Jeunes Élites<br>de Côte d’Ivoire</span></div>
+      <button class="poster-trigger header-trigger" type="button" aria-label="Afficher l’affiche de la formation"><span></span><span></span><span></span></button>
+    </header>
+
+    <section class="training-card" aria-labelledby="training-title">
+      <div class="training-copy">
+        <p class="tag">FORMATION</p>
+        <h1 id="training-title">Prendre la parole<br><em>avec assurance</em></h1>
+        <p>Comment vaincre sa peur et s’exprimer avec assurance en public ?</p>
+      </div>
+      <button class="poster-trigger poster-preview" type="button" aria-label="Agrandir l’affiche de la formation">
+        <img src="IMG_2430.PNG" alt="Affiche originale de la formation sur la prise de parole en public">
+        <span>Voir l’affiche <b>↗</b></span>
+      </button>
     </section>
-    <footer>EXCELLENCE · RIGUEUR · CIVISME</footer>
+
+    <nav class="steps" aria-label="Étapes de l’inscription">
+      <div class="step active" data-indicator="1"><span>1</span><strong>Informations</strong></div>
+      <i></i>
+      <div class="step" data-indicator="2"><span>2</span><strong>Participation</strong></div>
+      <i></i>
+      <div class="step" data-indicator="3"><span>3</span><strong>Confirmation</strong></div>
+    </nav>
+
+    <section class="registration-card" aria-labelledby="form-title">
+      <div class="form-heading">
+        <div><h2 id="form-title">Votre inscription</h2><p id="step-description">Renseignez vos informations pour commencer.</p></div>
+        <div class="counter-card"><span class="counter-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="16.5" cy="9" r="2.2"></circle><path d="M3.5 19c.4-3.4 2.3-5.1 5.5-5.1s5.1 1.7 5.5 5.1M14.3 15.1c3 0 4.7 1.3 5.1 3.9"></path></svg></span><div><small>INSCRIPTIONS</small><strong id="registration-count">—</strong></div></div>
+      </div>
+
+      <form id="registration-form" novalidate>
+        <fieldset class="form-step active" data-step="1">
+          <legend class="sr-only">Informations personnelles</legend>
+          <label for="nom">Nom et prénoms <b>*</b></label>
+          <div class="input-wrap"><span class="field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20c.8-4 3.3-6 7.5-6s6.7 2 7.5 6"></path></svg></span><input id="nom" name="nom" autocomplete="name" placeholder="Ex. : Kouamé Yao" required maxlength="120"></div>
+          <label for="telephone">Téléphone / WhatsApp <b>*</b></label>
+          <div class="input-wrap"><span class="field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.1 4.3 5.4 5.6c-.9.5-1.2 1.5-.8 2.4 2.5 5.6 5.6 8.7 11.2 11.2.9.4 1.9.1 2.4-.8l1.3-2.7-4-2.1-1.5 1.8c-2.2-1.2-4.2-3.2-5.4-5.4l1.8-1.5z"></path></svg></span><input id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : 07 00 00 00 00" required maxlength="30"></div>
+          <label for="email">Adresse e-mail <small>(facultative)</small></label>
+          <div class="input-wrap"><span class="field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect><path d="m4.5 7 7.5 5.5L19.5 7"></path></svg></span><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Ex. : mon@email.com" maxlength="160"></div>
+          <label for="ville">Ville de résidence <b>*</b></label>
+          <div class="input-wrap select-wrap"><span class="field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 10c0 5-7 10-7 10s-7-5-7-10a7 7 0 1 1 14 0Z"></path><circle cx="12" cy="10" r="2.2"></circle></svg></span><select id="ville" name="ville" required><option value="">Sélectionnez votre ville</option><option>Abidjan</option><option>Bouaké</option><option>Yamoussoukro</option><option>San-Pédro</option><option>Korhogo</option><option>Daloa</option><option>Man</option><option>Gagnoa</option><option>Abengourou</option><option>Autre</option></select></div>
+          <button class="primary-button next-button" type="button">Continuer <span>→</span></button>
+        </fieldset>
+
+        <fieldset class="form-step" data-step="2" hidden>
+          <legend class="sr-only">Participation</legend>
+          <div class="theme-reminder"><span>✦</span><div><small>THÈME DE LA FORMATION</small><p>Comment vaincre sa peur et s’exprimer avec assurance en public ?</p></div></div>
+          <label for="participation">Confirmez-vous votre participation ? <b>*</b></label>
+          <div class="choice-list"><label class="choice"><input type="radio" name="participation" value="Oui" required><span><b>Oui, je confirme ma participation</b><small>Je souhaite recevoir les informations de connexion.</small></span></label><label class="choice"><input type="radio" name="participation" value="Non" required><span><b>Je souhaite seulement être informé(e)</b><small>Je recevrai les prochaines informations du RJECI.</small></span></label></div>
+          <div class="button-row"><button class="secondary-button previous-button" type="button">Retour</button><button class="primary-button next-button" type="button">Continuer <span>→</span></button></div>
+        </fieldset>
+
+        <fieldset class="form-step" data-step="3" hidden>
+          <legend class="sr-only">Confirmation</legend>
+          <div class="summary"><div class="summary-title"><div><span class="summary-icon">✓</span><strong>Vérifiez vos informations</strong></div><button class="edit-button" type="button">Modifier</button></div><dl><div><dt>Nom et prénoms</dt><dd data-summary="nom">—</dd></div><div><dt>Téléphone</dt><dd data-summary="telephone">—</dd></div><div><dt>E-mail</dt><dd data-summary="email">Non renseignée</dd></div><div><dt>Ville</dt><dd data-summary="ville">—</dd></div><div><dt>Participation</dt><dd data-summary="participation">—</dd></div></dl></div>
+          <label class="consent"><input type="checkbox" id="consent" required><span>J’accepte que mes informations soient utilisées par le RJECI uniquement pour gérer cette inscription.</span></label>
+          <div class="button-row"><button class="secondary-button previous-button" type="button">Retour</button><button class="primary-button" id="submit-button" type="submit">Confirmer mon inscription <span>✓</span></button></div>
+        </fieldset>
+      </form>
+      <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+      <p class="data-note"><span>♢</span> Vos informations sont utilisées uniquement pour l’organisation de cette formation.</p>
+    </section>
+    <footer>Une initiative du <strong>RJECI</strong> · Côte d’Ivoire</footer>
   </main>
-  <dialog id="poster-dialog"><button class="close-poster" aria-label="Fermer">×</button><img src="IMG_2430.PNG" alt="Affiche de la formation prise de parole en public"></dialog>
-  <script src="js/config.js"></script><script src="js/script.js?v=4"></script>
-</body></html>
+
+  <dialog id="poster-dialog"><button class="close-poster" type="button" aria-label="Fermer l’affiche">×</button><img src="IMG_2430.PNG" alt="Affiche originale de la formation RJECI sur la prise de parole en public"></dialog>
+  <script src="js/config.js"></script>
+  <script src="js/script.js?v=5"></script>
+</body>
+</html>
