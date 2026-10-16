@@ -1,26 +1,5 @@
-/* Carte de présentation : l'affiche originale reste entière et lisible. */
-.training-card{
-  min-height:0;
-  padding:24px 14px 14px;
-  background:linear-gradient(140deg,#fff 0%,#fff8ef 100%);
-}
-.training-card:before{width:142px;height:142px;right:-47px;top:-76px;border-width:18px}
-.training-card:after{width:110px;height:110px;right:-62px;bottom:-62px}
-.training-copy{width:100%;padding:0 6px 19px}
-.training-copy h1{max-width:100%;font-size:29px;line-height:1.16}
-.training-copy>p:last-child{max-width:320px;font-size:12px}
-.poster-preview{
-  position:relative;
-  right:auto;
-  bottom:auto;
-  display:block;
-  width:100%;
-  height:255px;
-  border:1px solid #f1dfcb;
-  border-radius:17px;
-  background:#f8ecdd;
-  box-shadow:0 10px 20px rgba(113,66,27,.11);
-}
-.poster-preview:after{background:linear-gradient(180deg,transparent 65%,rgba(31,24,19,.15))}
-.poster-preview img{object-fit:contain;object-position:center;background:#f8ecdd}
-.poster-preview span{right:10px;bottom:10px;padding:7px 9px;border-radius:9px;font-size:9px;box-shadow:0 3px 8px rgba(34,23,14,.14)}
+/* Composition proche de la maquette : message à gauche, intervenant à droite. */
+.training-card{min-height:272px;padding:0;background:linear-gradient(135deg,#fff 0%,#fff8ee 70%,#f8dfc5 100%)}
+.training-card:before{width:170px;height:170px;right:33px;top:-110px;border-width:20px}.training-card:after{width:120px;height:120px;right:-72px;bottom:-72px}
+.training-copy{width:67%;padding:28px 13px 22px 20px}.training-copy h1{max-width:245px;font-size:23px;line-height:1.15;letter-spacing:-1px}.training-copy h1 em{display:block;margin-top:3px}.training-copy>p:last-child{max-width:228px;margin-top:12px;font-size:11px;line-height:1.45}
+.poster-preview{position:absolute;right:0;bottom:0;width:40%;height:100%;border:0;border-radius:0;background:#ead0b6;box-shadow:none}.poster-preview:after{background:linear-gradient(90deg,rgba(255,247,235,.85) 0%,rgba(255,247,235,0) 27%)}.poster-preview img{object-fit:cover;object-position:88% center;background:transparent}.poster-preview span{right:9px;bottom:10px;padding:6px 7px;border-radius:8px;font-size:8px;box-shadow:0 3px 8px rgba(34,23,14,.14)}
