@@ -1,60 +1,67 @@
 const form = document.querySelector("#registration-form");
-const submitButton = document.querySelector("#submit-button");
 const message = document.querySelector("#form-message");
-const count = document.querySelector("#registration-count");
 const scriptUrl = window.RJECI_CONFIG?.SCRIPT_URL || "";
+const steps = [...document.querySelectorAll(".form-step")];
+const progress = [...document.querySelectorAll(".progress i")];
+const titles = ["Faisons connaissance", "Vos coordonnées", "Dernière étape"];
+let currentStep = 1;
 
+function configured() {
+  return scriptUrl.startsWith("https://script.google.com/macros/s/") && scriptUrl.endsWith("/exec");
+}
 function showMessage(text, type) {
   message.textContent = text;
   message.className = `form-message ${type}`;
 }
-function isConfigured() {
-  return scriptUrl.startsWith("https://script.google.com/macros/s/") && scriptUrl.endsWith("/exec");
+function showStep(step) {
+  currentStep = step;
+  steps.forEach((panel) => panel.classList.toggle("active", Number(panel.dataset.step) === step));
+  progress.forEach((line, index) => line.classList.toggle("active", index < step));
+  document.querySelector("#step-label").textContent = `ÉTAPE ${step} SUR 3`;
+  document.querySelector("#step-title").textContent = titles[step - 1];
+  document.querySelector("#step-number").textContent = `0${step}`;
+  message.className = "form-message";
+  document.querySelector(`.form-step[data-step="${step}"] input, .form-step[data-step="${step}"] select`)?.focus();
 }
-async function loadCount() {
-  if (!isConfigured()) {
-    count.textContent = "—";
-    return;
-  }
-  try {
-    const response = await fetch(`${scriptUrl}?action=count`, { method: "GET", redirect: "follow" });
-    const data = await response.json();
-    if (data.success) count.textContent = data.count;
-  } catch (error) {
-    count.textContent = "—";
-    console.warn("Impossible de charger le compteur :", error);
-  }
+function validateStep(step) {
+  const fields = [...document.querySelectorAll(`.form-step[data-step="${step}"] input[required], .form-step[data-step="${step}"] select[required]`)];
+  return fields.every((field) => field.reportValidity());
 }
+
+document.querySelectorAll(".next[type=button]").forEach((button) => {
+  button.addEventListener("click", () => { if (validateStep(currentStep)) showStep(currentStep + 1); });
+});
+document.querySelectorAll(".back").forEach((button) => button.addEventListener("click", () => showStep(currentStep - 1)));
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  message.className = "form-message";
-  if (!form.reportValidity()) return;
-  if (!isConfigured()) {
-    showMessage("Le formulaire n'est pas encore connecté à Google Sheets. Suivez le guide INSTALLATION.md pour configurer l'URL Apps Script.", "error");
+  if (!validateStep(3)) return;
+  if (!configured()) {
+    showMessage("Le formulaire est prêt. Il manque seulement l’URL Google Apps Script pour enregistrer les inscriptions.", "error");
     return;
   }
+  const submit = document.querySelector("#submit-button");
+  const original = submit.innerHTML;
+  submit.disabled = true;
+  submit.textContent = "Envoi en cours…";
   const payload = Object.fromEntries(new FormData(form).entries());
   payload.consentement = document.querySelector("#consent").checked ? "Oui" : "Non";
-  submitButton.disabled = true;
-  submitButton.querySelector("span").textContent = "Envoi en cours…";
   try {
-    // Apps Script reçoit le POST en texte brut pour éviter une requête CORS preflight.
-    const response = await fetch(scriptUrl, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-      redirect: "follow"
-    });
+    const response = await fetch(scriptUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload), redirect: "follow" });
     const result = await response.json();
-    if (!result.success) throw new Error(result.message || "L'enregistrement a échoué.");
+    if (!result.success) throw new Error(result.message || "L’enregistrement a échoué.");
     form.reset();
-    showMessage("Merci ! Votre inscription a bien été enregistrée. Le RJECI vous remercie pour votre intérêt.", "success");
-    await loadCount();
+    showStep(1);
+    showMessage("Votre inscription est confirmée. Merci de rejoindre le RJECI !", "success");
   } catch (error) {
-    showMessage("Impossible de confirmer l'enregistrement. Vérifiez votre connexion puis réessayez. Si le problème persiste, contactez l'organisateur. Détail : " + error.message, "error");
+    showMessage(`Impossible de confirmer l’inscription : ${error.message}`, "error");
   } finally {
-    submitButton.disabled = false;
-    submitButton.querySelector("span").textContent = "Envoyer mon inscription";
+    submit.disabled = false;
+    submit.innerHTML = original;
   }
 });
-loadCount();
+
+const dialog = document.querySelector("#poster-dialog");
+document.querySelectorAll(".show-poster, .poster-button").forEach((button) => button.addEventListener("click", () => dialog.showModal()));
+document.querySelector(".close-poster").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
