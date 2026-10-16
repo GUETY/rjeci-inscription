@@ -1,0 +1,2 @@
+.theme-strip{display:flex;gap:12px;align-items:flex-start;margin:3px 2px 23px;padding:16px;border:1px solid #f0e2d4;border-radius:17px;background:linear-gradient(110deg,#fff8ef,#fffdf9);box-shadow:0 8px 20px rgba(104,61,25,.05)}
+.theme-mark{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:11px;background:#fff0df;color:#bf672c;font-size:16px}.theme-strip p{margin:1px 0 5px;color:#bf672c;font-size:8px;letter-spacing:.8px;font-weight:800}.theme-strip h1{margin:0;color:#27313e;font:700 13px/1.4 "DM Sans",sans-serif}

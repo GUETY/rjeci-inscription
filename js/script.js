@@ -116,9 +116,4 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-const dialog = document.querySelector("#poster-dialog");
-document.querySelectorAll(".poster-trigger").forEach((button) => button.addEventListener("click", () => dialog.showModal()));
-document.querySelector(".close-poster").addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
-
 loadCount();
