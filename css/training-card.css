@@ -1,0 +1,26 @@
+/* Carte de présentation : l'affiche originale reste entière et lisible. */
+.training-card{
+  min-height:0;
+  padding:24px 14px 14px;
+  background:linear-gradient(140deg,#fff 0%,#fff8ef 100%);
+}
+.training-card:before{width:142px;height:142px;right:-47px;top:-76px;border-width:18px}
+.training-card:after{width:110px;height:110px;right:-62px;bottom:-62px}
+.training-copy{width:100%;padding:0 6px 19px}
+.training-copy h1{max-width:100%;font-size:29px;line-height:1.16}
+.training-copy>p:last-child{max-width:320px;font-size:12px}
+.poster-preview{
+  position:relative;
+  right:auto;
+  bottom:auto;
+  display:block;
+  width:100%;
+  height:255px;
+  border:1px solid #f1dfcb;
+  border-radius:17px;
+  background:#f8ecdd;
+  box-shadow:0 10px 20px rgba(113,66,27,.11);
+}
+.poster-preview:after{background:linear-gradient(180deg,transparent 65%,rgba(31,24,19,.15))}
+.poster-preview img{object-fit:contain;object-position:center;background:#f8ecdd}
+.poster-preview span{right:10px;bottom:10px;padding:7px 9px;border-radius:9px;font-size:9px;box-shadow:0 3px 8px rgba(34,23,14,.14)}
