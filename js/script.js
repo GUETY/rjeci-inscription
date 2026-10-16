@@ -15,7 +15,11 @@ function showMessage(text, type) {
 }
 function showStep(step) {
   currentStep = step;
-  steps.forEach((panel) => panel.classList.toggle("active", Number(panel.dataset.step) === step));
+  steps.forEach((panel) => {
+    const isCurrent = Number(panel.dataset.step) === step;
+    panel.hidden = !isCurrent;
+    panel.classList.toggle("active", isCurrent);
+  });
   progress.forEach((line, index) => line.classList.toggle("active", index < step));
   document.querySelector("#step-label").textContent = `ÉTAPE ${step} SUR 3`;
   document.querySelector("#step-title").textContent = titles[step - 1];
